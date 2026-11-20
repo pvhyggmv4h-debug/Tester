@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>BMW Workshop 161 — сервис BMW в Ростове-на-Дону</title>
+<style>
+:root{--bg:#0d1218;--s1:#161e28;--s2:#1d2733;--line:#2a3643;--text:#eef2f6;--mut:#9aa7b4;--blue:#53a8ff;--navy:#1c3f94;--red:#e0262d;--wa:#25d366}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.55 "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+a{color:inherit}
+.w{max-width:980px;margin:0 auto;padding:0 20px}
+.demo{background:var(--navy);font-size:13px;text-align:center;padding:6px 12px;padding-top:calc(6px + env(safe-area-inset-top))}
+header{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;height:58px}
+.logo{font-weight:800;text-decoration:none;letter-spacing:.01em;display:flex;align-items:center;gap:10px}
+.logo i{display:flex;height:16px;width:22px;transform:skewX(-18deg)}
+.logo i b{flex:1}.logo i b:nth-child(1){background:var(--blue)}.logo i b:nth-child(2){background:var(--navy)}.logo i b:nth-child(3){background:var(--red)}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;background:var(--s1);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+nav a{flex:1;text-align:center;padding:14px 4px;text-decoration:none;color:var(--mut);font-size:14px;position:relative;transition:color .2s}
+nav a::after{content:"";position:absolute;left:30%;right:30%;top:0;height:3px;background:var(--blue);transform:scaleX(0);transition:transform .25s}
+nav a.on{color:var(--text)}nav a.on::after{transform:none}
+@media(min-width:760px){nav{position:static;border:0;background:none;padding:0;gap:8px}nav a{flex:none;padding:8px 14px}nav a::after{top:auto;bottom:-10px;left:14px;right:14px}body{padding-bottom:0}.top{height:64px}}
+.btn{position:relative;overflow:hidden;display:inline-block;padding:14px 22px;border-radius:8px;font:inherit;font-weight:600;text-decoration:none;border:1px solid var(--line);background:var(--s2);color:var(--text);cursor:pointer;transition:transform .12s,border-color .2s;-webkit-tap-highlight-color:transparent}
+.btn:hover{border-color:var(--blue)}.btn:active{transform:scale(.96)}
+.btn.wa{background:var(--wa);border-color:var(--wa);color:#05210f}
+.btn.m{padding:8px 16px;font-size:14px}
+.btn.r{color:#ff8b8f}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.rip{position:absolute;width:40px;height:40px;margin:-20px;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(7);opacity:0}}
+.pg{display:none;padding:32px 0 20px}
+.pg.on{display:block;animation:in .4s ease both}
+@keyframes in{from{opacity:0;transform:translateY(12px)}}
+h1{font-size:clamp(32px,7vw,58px);line-height:1.06;font-weight:800;letter-spacing:-.02em}
+h2{font-size:26px;letter-spacing:-.01em;margin-bottom:6px}
+h3{margin-bottom:8px}
+.sub{color:var(--mut);margin-bottom:20px}
+.hero{display:grid;gap:28px;align-items:center}
+@media(min-width:800px){.hero{grid-template-columns:1.1fr 1fr}}
+.lead{color:var(--mut);font-size:18px;margin:16px 0 22px;max-width:30em}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.gauge{background:radial-gradient(circle at 50% 40%,var(--s2),var(--s1));border:1px solid var(--line);border-radius:50%;max-width:360px;width:100%;margin:0 auto;aspect-ratio:1;position:relative;transition:box-shadow .3s}
+.gauge.hot{box-shadow:0 0 50px rgba(224,38,45,.45)}
+.gauge svg{width:100%;display:block}
+.rpm{position:absolute;left:0;right:0;bottom:15%;text-align:center}
+.rpm b{font-size:28px;display:block;line-height:1}.rpm span{color:var(--mut);font-size:12px}
+.rev{display:block;margin:14px auto 0;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;touch-action:none}
+.stats{display:flex;gap:30px;flex-wrap:wrap;margin:34px 0 0}
+.stats b{font-size:36px;line-height:1;display:block}.stats span{color:var(--mut);font-size:14px}
+.blk{margin-top:46px;padding-top:34px;border-top:1px solid var(--line)}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{padding:10px 16px;border-radius:999px;border:1px solid var(--line);background:var(--s1);color:var(--text);font:inherit;cursor:pointer;transition:background .2s,border-color .2s,transform .12s}
+.chip:active{transform:scale(.95)}
+.chip.on{background:var(--navy);border-color:var(--blue)}
+.res{margin-top:18px;background:var(--s1);border:1px solid var(--line);border-left:4px solid var(--blue);border-radius:8px;padding:18px;animation:in .35s both}
+.res p{color:var(--mut);margin:6px 0 14px}
+.row{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:13px 0;border-bottom:1px solid var(--line)}
+.row small{display:block;color:var(--mut)}.row:last-child{border:0}
+.pr{font-weight:700;color:var(--blue);white-space:nowrap}.pr.q{color:var(--mut);font-weight:400;font-size:14px}
+.cols{display:grid;gap:28px}@media(min-width:760px){.cols{grid-template-columns:1fr 1fr}}
+.bar div{display:flex;justify-content:space-between;margin:12px 0 5px;font-size:15px}
+.bar span{display:block;height:6px;background:var(--s2);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--navy),var(--blue));transition:width 1s ease .2s}
+blockquote{background:var(--s1);border-left:4px solid var(--navy);padding:18px;border-radius:0 8px 8px 0}
+blockquote cite{display:block;margin-top:10px;color:var(--mut);font-size:14px;font-style:normal}
+label{display:block;margin-bottom:14px;color:var(--mut);font-size:14px}
+input,select{display:block;width:100%;margin-top:6px;padding:13px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit;transition:border-color .2s}
+input:focus,select:focus{border-color:var(--blue)}
+form{max-width:460px}
+.slots{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0 16px}
+.slots label{margin:0}.slots input{position:absolute;opacity:0;width:1px;height:1px}
+.slots span{display:block;padding:10px 14px;border:1px solid var(--line);border-radius:8px;color:var(--text);background:var(--s1);cursor:pointer;transition:all .2s}
+.slots input:checked+span{background:var(--blue);color:#06182b;border-color:var(--blue);transform:scale(1.05)}
+.slots input:focus-visible+span{outline:3px solid var(--blue);outline-offset:2px}
+.card{background:var(--s1);border:1px solid var(--line);border-radius:10px;padding:20px;margin-bottom:16px}
+.me{display:flex;gap:14px;align-items:center;margin-bottom:22px}
+.av{width:56px;height:56px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--navy));display:grid;place-items:center;font-size:24px;font-weight:800}
+.tl{list-style:none;padding:0;margin-top:10px}
+.tl li{position:relative;padding:0 0 18px 30px;color:var(--mut);opacity:0;animation:in .5s forwards}
+.tl li::before{content:"";position:absolute;left:0;top:5px;width:14px;height:14px;border-radius:50%;border:2px solid var(--line);background:var(--bg)}
+.tl li::after{content:"";position:absolute;left:6px;top:20px;bottom:-4px;width:2px;background:var(--line)}.tl li:last-child::after{display:none}
+.tl .d{color:var(--text)}.tl .d::before{background:var(--blue);border-color:var(--blue)}
+.tl .n{color:var(--text);font-weight:600}.tl .n::before{border-color:var(--blue);animation:pu 1.5s infinite}
+@keyframes pu{50%{box-shadow:0 0 0 7px rgba(83,168,255,.25)}}
+.ok{text-align:center;padding:20px 0}.ok svg{width:72px}
+.ok circle{stroke-dasharray:151;stroke-dashoffset:151;animation:dr .6s forwards}
+.ok path{stroke-dasharray:40;stroke-dashoffset:40;animation:dr .4s .5s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+dialog{background:var(--s1);color:var(--text);border:1px solid var(--line);border-radius:12px;padding:22px;width:min(94vw,400px);margin:auto;max-height:92vh}
+dialog::backdrop{background:rgba(0,0,0,.7)}dialog[open]{animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:scale(.93)}}
+.tabs{display:flex;background:var(--bg);border-radius:8px;padding:4px;margin-bottom:18px}
+.tabs button{flex:1;padding:10px;border:0;border-radius:6px;background:none;color:var(--mut);font:inherit;font-weight:600;cursor:pointer;transition:all .2s}
+.tabs button.on{background:var(--s2);color:var(--text)}
+.str{height:5px;background:var(--s2);border-radius:3px;margin:-8px 0 14px;overflow:hidden}.str i{display:block;height:100%;width:0;transition:all .3s}
+.chk{display:flex;gap:10px;align-items:flex-start}.chk input{width:auto;margin:4px 0 0}
+.err{color:#ff8b8f;font-size:14px;min-height:20px;margin-bottom:8px}
+.shake{animation:sh .4s}@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+.note{color:var(--mut);font-size:13px;margin-bottom:12px}
+#toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom));transform:translate(-50%,30px);background:var(--s2);border:1px solid var(--blue);padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:all .3s;z-index:50;white-space:nowrap}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+footer{padding:26px 0;color:var(--mut);font-size:13px;border-top:1px solid var(--line);margin-top:30px}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия сайта, подготовленная для BMW Workshop 161</div>
+<header><div class="w top">
+  <a class="logo" href="#/"><i><b></b><b></b><b></b></i>BMW Workshop 161</a>
+  <nav><a href="#/" data-r="home">Главная</a><a href="#/booking" data-r="booking">Запись</a><a href="#/cabinet" data-r="cabinet">Кабинет</a><a href="https://wa.me/79526022666">WhatsApp</a></nav>
+  <button class="btn m" id="authBtn">Войти</button>
+</div></header>
+
+<main class="w">
+<section class="pg" id="home">
+  <div class="hero">
+    <div>
+      <h1>Сервис BMW, которому доверяют в Ростове</h1>
+      <p class="lead">Диагностика, обслуживание и ремонт. Объясняем, в чём проблема, и называем цену до начала работ.</p>
+      <div class="btns"><a class="btn wa" href="#/booking">Записаться онлайн</a><button class="btn" id="regBtn">Создать кабинет</button></div>
+    </div>
+    <div>
+      <div class="gauge" id="gauge">
+        <svg viewBox="0 0 300 300" aria-hidden="true"><g id="ticks"></g><path id="red" fill="none" stroke="#e0262d" stroke-width="6"/><g id="needle" transform="rotate(-120 150 150)"><path d="M146 150L150 46L154 150Z" fill="#e0262d"/><circle cx="150" cy="150" r="9" fill="#eef2f6"/></g></svg>
+        <div class="rpm"><b id="rpmv">800</b><span>об/мин</span></div>
+      </div>
+      <button class="btn rev" id="rev">Нажми и держи</button>
+    </div>
+  </div>
+  <div class="stats"><div><b>5.0</b><span>рейтинг на Яндекс Картах</span></div><div><b>273</b><span>оценки</span></div><div><b>183</b><span>отзыва</span></div></div>
+
+  <div class="blk"><h2>Что случилось с машиной?</h2><p class="sub">Выберите симптом, и мы подскажем, с чего начать.</p>
+    <div class="chips" id="chips"></div><div id="res"></div></div>
+
+  <div class="blk"><h2>Услуги</h2><p class="sub">Точную стоимость назовём после осмотра.</p><div id="svc"></div></div>
+
+  <div class="blk cols">
+    <div><h2>Что говорят клиенты</h2><p class="sub">Доля положительных оценок:</p><div class="bar" id="bars"></div></div>
+    <blockquote>Ехали проездом, на X5 сломался вентилятор и повредил радиатор. Машину приняли перед закрытием, причину нашли за 10 минут и сделали ремонт за обещанные три дня.<cite>Из отзыва на Яндекс Картах, сентябрь 2025</cite></blockquote>
+  </div>
+
+  <div class="blk"><h2>Как нас найти</h2><p class="sub">Открыто с 9:00. Парковка, комната ожидания, Wi-Fi.</p>
+    <div class="row"><span>Адрес</span><a href="https://yandex.ru/maps/org/bmv_vorkshop_161/4807083279/">Набережная улица, 217, 1 этаж</a></div>
+    <div class="row"><span>Телефон</span><a href="tel:+79525879999">+7 (952) 587-99-99</a></div>
+    <div class="row"><span>Мессенджеры</span><span><a href="https://wa.me/79526022666">WhatsApp</a> · <a href="https://t.me/+79526022666">Telegram</a></span></div></div>
+</section>
+
+<section class="pg" id="booking">
+  <h2>Онлайн-запись</h2><p class="sub">Выберите услугу, день и время. Мы свяжемся для подтверждения.</p>
+  <form id="bf">
+    <label>Услуга<select id="bS"></select></label>
+    <label>Автомобиль<input id="bC" placeholder="Например, BMW 530d G30" required></label>
+    <label>Дата<input id="bD" type="date" required></label>
+    <div style="color:var(--mut);font-size:14px">Время</div><div class="slots" id="slots"></div>
+    <label>Имя<input id="bN" required autocomplete="name"></label>
+    <label>Телефон<input id="bP" type="tel" required autocomplete="tel" placeholder="+7"></label>
+    <button class="btn wa" type="submit">Отправить заявку</button>
+  </form>
+  <div class="ok" id="ok" hidden>
+    <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="none" stroke="#25d366" stroke-width="3"/><path d="M14 27l8 8 16-17" fill="none" stroke="#25d366" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h2 style="margin-top:12px">Заявка отправлена</h2><p class="sub">Она сохранена в кабинете. Продублируйте её в WhatsApp, чтобы ответили быстрее.</p>
+    <div class="btns" style="justify-content:center"><a class="btn wa" id="wl" href="#">Написать в WhatsApp</a><a class="btn" href="#/cabinet">Открыть кабинет</a></div>
+  </div>
+</section>
+
+<section class="pg" id="cabinet"><div id="cb"></div></section>
+</main>
+<footer><div class="w">BMW Workshop 161, Ростов-на-Дону. Независимый сервис, не является официальным дилером BMW. BMW — товарный знак BMW AG.</div></footer>
+<div id="toast"></div>
+
+<dialog id="dlg">
+  <div class="tabs"><button class="on" data-t="in">Вход</button><button data-t="up">Регистрация</button></div>
+  <p class="note">Демо: данные хранятся только в вашем браузере.</p>
+  <form id="fIn">
+    <label>Телефон<input id="iP" type="tel" required autocomplete="tel" placeholder="+7"></label>
+    <label>Пароль<input id="iW" type="password" required autocomplete="current-password"></label>
+    <div class="err" id="eIn"></div>
+    <div class="btns"><button class="btn wa" type="submit">Войти</button><button class="btn" type="button" data-x>Отмена</button></div>
+  </form>
+  <form id="fUp" hidden>
+    <label>Имя<input id="uN" required autocomplete="name"></label>
+    <label>Телефон<input id="uP" type="tel" required autocomplete="tel" placeholder="+7"></label>
+    <label>Почта<input id="uE" type="email" autocomplete="email"></label>
+    <label>Пароль (от 6 символов)<input id="uW" type="password" required minlength="6" autocomplete="new-password"></label>
+    <div class="str"><i id="sb"></i></div>
+    <label>Ваш автомобиль<input id="uC" placeholder="BMW 530d G30, 2019"></label>
+    <label class="chk"><input type="checkbox" id="uA" required><span>Согласен на обработку персональных данных</span></label>
+    <div class="err" id="eUp"></div>
+    <div class="btns"><button class="btn wa" type="submit">Зарегистрироваться</button><button class="btn" type="button" data-x>Отмена</button></div>
+  </form>
+</dialog>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const st={g(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},s(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const digits=s=>s.replace(/\D/g,'');
+async function hash(s){try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){return btoa(unescape(encodeURIComponent(s)))}}
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>e.classList.remove('on'),2200)}
+const S=[{n:'Диагностика BMW',p:'1 000 ₽',d:'Определим причину неисправности до начала ремонта.'},{n:'Техническое обслуживание',d:'Масло, фильтры, свечи, колодки и жидкости по регламенту.'},{n:'Ремонт',d:'Двигатель, ходовая, электрика, охлаждение.'},{n:'Кузовной ремонт',d:'Восстановление после ДТП и мелких повреждений.'},{n:'Сход-развал',d:'Регулировка углов установки колёс.'},{n:'Дооснащение',d:'Дополнительное оборудование для вашей BMW.'},{n:'Запчасти под заказ',d:'Подберём и закажем детали на ваш автомобиль.'}];
+const Q=[['Стук в подвеске',0,'Найдём источник стука и скажем, что менять.'],['Горит Check Engine',0,'Считаем ошибки и проверим системы двигателя.'],['Плановое ТО',1,'Сделаем обслуживание по регламенту вашей модели.'],['Машина после ДТП',3,'Оценим повреждения и согласуем объём кузовных работ.'],['Уводит в сторону',4,'Проверим углы колёс и при необходимости отрегулируем.']];
+$('#svc').innerHTML=S.map(s=>`<div class="row"><span><b>${s.n}</b><small>${s.d}</small></span><span class="pr${s.p?'':' q'}">${s.p||'по запросу'}</span></div>`).join('');
+$('#bS').innerHTML=S.map((s,i)=>`<option value="${i}">${s.n}</option>`).join('');
+$('#bars').innerHTML=[['Персонал',97],['Ремонт',95],['Сроки',94],['Диагностика',97],['Обслуживание',100]].map(a=>`<div><div><span>${a[0]}</span><b>${a[1]}%</b></div><span><i data-w="${a[1]}"></i></span></div>`).join('');
+$('#slots').innerHTML=['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'].map(t=>`<label><input type="radio" name="tm" value="${t}" required><span>${t}</span></label>`).join('');
+$('#bD').min=new Date().toISOString().slice(0,10);
+
+// подбор симптома
+$('#chips').innerHTML=Q.map((q,i)=>`<button class="chip" data-q="${i}">${q[0]}</button>`).join('');
+$('#chips').onclick=e=>{const b=e.target.closest('.chip');if(!b)return;$$('.chip').forEach(c=>c.classList.toggle('on',c===b));const q=Q[b.dataset.q],s=S[q[1]];
+  $('#res').innerHTML=`<div class="res"><b>${s.n}</b> ${s.p?'· '+s.p:''}<p>${q[2]} Это предварительная рекомендация, точный диагноз после осмотра.</p><a class="btn wa m" href="#/booking" data-svc="${q[1]}">Записаться</a></div>`};
+document.addEventListener('click',e=>{
+  const a=e.target.closest('[data-svc]');if(a)$('#bS').value=a.dataset.svc;
+  const b=e.target.closest('.btn');if(b){const r=b.getBoundingClientRect(),s=document.createElement('span');s.className='rip';s.style.left=(e.clientX-r.left)+'px';s.style.top=(e.clientY-r.top)+'px';b.appendChild(s);setTimeout(()=>s.remove(),650)}
+});
+
+// тахометр
+const P=(a,r)=>{a=a*Math.PI/180;return[(150+r*Math.sin(a)).toFixed(1),(150-r*Math.cos(a)).toFixed(1)]};
+$('#ticks').innerHTML=Array.from({length:9},(_,i)=>{const a=-120+i*30,p1=P(a,104),p2=P(a,118),t=P(a,86);return`<line x1="${p1[0]}" y1="${p1[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="#9aa7b4" stroke-width="3"/><text x="${t[0]}" y="${+t[1]+6}" text-anchor="middle" fill="#eef2f6" font-size="18" font-weight="700">${i}</text>`}).join('');
+{const a=P(75,118),b=P(120,118);$('#red').setAttribute('d',`M${a[0]} ${a[1]}A118 118 0 0 1 ${b[0]} ${b[1]}`)}
+let rpm=800,held=false,run=false;
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+function setN(v){rpm=v;$('#needle').setAttribute('transform',`rotate(${-120+v/8000*240} 150 150)`);$('#rpmv').textContent=Math.round(v/10)*10;$('#gauge').classList.toggle('hot',v>6500)}
+function loop(){if(run)return;run=true;(function f(){rpm+=held?(8000-rpm)*.05:-(rpm-800)*.06;setN(rpm);if(held||rpm>805)requestAnimationFrame(f);else{run=false;setN(800)}})()}
+function sweep(){if(reduce)return;const t0=performance.now();(function f(t){const k=(t-t0)/1700;if(k>=1){setN(800);return}if(!held)setN(800+7000*Math.sin(Math.PI*k));requestAnimationFrame(f)})(t0)}
+const rv=$('#rev');
+rv.addEventListener('pointerdown',e=>{e.preventDefault();held=true;loop()});
+['pointerup','pointerleave','pointercancel'].forEach(n=>rv.addEventListener(n,()=>{held=false;loop()}));
+rv.addEventListener('contextmenu',e=>e.preventDefault());
+
+// пользователи
+const users=()=>st.g('bw_users',{});
+const cur=()=>{const p=st.g('bw_sess',null),u=p&&users()[p];return u?{phone:p,...u}:null};
+function auth(){const u=cur();$('#authBtn').textContent=u?u.name.split(' ')[0]:'Войти'}
+const dlg=$('#dlg');
+function openDlg(t){tab(t||'in');dlg.showModal()}
+function tab(t){$$('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.t===t));$('#fIn').hidden=t!=='in';$('#fUp').hidden=t!=='up'}
+$('.tabs').onclick=e=>{const b=e.target.closest('button');if(b)tab(b.dataset.t)};
+$$('[data-x]').forEach(b=>b.onclick=()=>dlg.close());
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+$('#authBtn').onclick=()=>cur()?location.hash='#/cabinet':openDlg('in');
+$('#regBtn').onclick=()=>cur()?location.hash='#/cabinet':openDlg('up');
+$('#uW').oninput=e=>{const v=e.target.value;let s=0;if(v.length>=6)s++;if(v.length>=9)s++;if(/[A-Za-zА-Яа-я]/.test(v)&&/\d/.test(v))s++;if(/[^\w]/.test(v))s++;const b=$('#sb');b.style.width=(s*25)+'%';b.style.background=['#e0262d','#e0262d','#e7a33c','#53a8ff','#25d366'][s]};
+function fail(f,id,m){$(id).textContent=m;f.classList.remove('shake');void f.offsetWidth;f.classList.add('shake')}
+function done(p){st.s('bw_sess',p);dlg.close();auth();toast('Добро пожаловать!');if(location.hash==='#/cabinet')route();else location.hash='#/cabinet'}
+$('#fUp').onsubmit=async e=>{e.preventDefault();const p=digits($('#uP').value),all=users();
+  if(p.length<10)return fail(e.target,'#eUp','Проверьте номер телефона');
+  if(all[p])return fail(e.target,'#eUp','Этот номер уже зарегистрирован. Войдите.');
+  all[p]={name:$('#uN').value.trim(),email:$('#uE').value.trim(),car:$('#uC').value.trim(),h:await hash($('#uW').value)};st.s('bw_users',all);e.target.reset();$('#sb').style.width=0;done(p)};
+$('#fIn').onsubmit=async e=>{e.preventDefault();const p=digits($('#iP').value),u=users()[p];
+  if(!u||u.h!==await hash($('#iW').value))return fail(e.target,'#eIn','Неверный номер или пароль');
+  e.target.reset();$('#eIn').textContent='';done(p)};
+
+// запись
+$('#bf').onsubmit=e=>{e.preventDefault();
+  const o={id:Date.now(),svc:S[$('#bS').value].n,car:$('#bC').value.trim(),date:$('#bD').value,time:e.target.tm.value,name:$('#bN').value.trim(),phone:$('#bP').value.trim()};
+  st.s('bw_book',[o,...st.g('bw_book',[])]);
+  $('#wl').href='https://wa.me/79526022666?text='+encodeURIComponent(`Здравствуйте! Хочу записаться: ${o.svc}. Авто: ${o.car}. ${o.date}, ${o.time}. Меня зовут ${o.name}, телефон ${o.phone}.`);
+  e.target.hidden=true;const k=$('#ok');k.replaceWith(k.cloneNode(true));$('#ok').hidden=false;e.target.reset()};
+function prefill(){const u=cur();if(u){$('#bN').value=u.name;$('#bP').value='+'+u.phone;if(u.car)$('#bC').value=u.car}}
+
+// кабинет
+function cab(){
+  const el=$('#cb'),u=cur();
+  if(!u){el.innerHTML='<h2>Личный кабинет</h2><p class="sub">Записи, автомобиль и статус ремонта в одном месте.</p><div class="btns"><button class="btn wa" id="c1">Зарегистрироваться</button><button class="btn" id="c2">Войти</button></div>';$('#c1').onclick=()=>openDlg('up');$('#c2').onclick=()=>openDlg('in');return}
+  const b=st.g('bw_book',[]),steps=['Заявка принята','Автомобиль на диагностике','Согласование работ','Ремонт','Готово к выдаче'];
+  el.innerHTML=`<div class="me"><div class="av">${esc(u.name[0].toUpperCase())}</div><div><h2 style="margin:0">${esc(u.name)}</h2><span class="sub" style="margin:0">+${esc(u.phone)}${u.email?' · '+esc(u.email):''}</span></div></div>
+  <div class="card"><h3>Мой автомобиль</h3><label>Модель и год<input id="car" value="${esc(u.car||'')}" placeholder="BMW 530d G30, 2019"></label><button class="btn wa m" id="cs">Сохранить</button></div>
+  <div class="card"><h3>Мои записи</h3>${b.length?b.map(x=>`<div class="row"><span>${esc(x.svc)}<small>${esc(x.date)}, ${esc(x.time)} · ${esc(x.car)}</small></span><button class="btn m r" data-del="${x.id}">Отменить</button></div>`).join(''):'<p class="note">Записей пока нет.</p><a class="btn m" href="#/booking">Записаться</a>'}</div>
+  <div class="card"><h3>Статус ремонта</h3><p class="note">Пример: так клиент увидит ход работ по своему автомобилю.</p><ol class="tl">${steps.map((s,i)=>`<li class="${i<3?'d':i==3?'n':''}" style="animation-delay:${i*.2}s">${s}</li>`).join('')}</ol></div>
+  <button class="btn" id="out">Выйти</button>`;
+  $('#cs').onclick=()=>{const a=users();a[u.phone].car=$('#car').value.trim();st.s('bw_users',a);toast('Автомобиль сохранён')};
+  $('#out').onclick=()=>{st.s('bw_sess',null);auth();cab();toast('Вы вышли')};
+}
+$('#cb').addEventListener('click',e=>{const d=e.target.closest('[data-del]');if(d){st.s('bw_book',st.g('bw_book',[]).filter(x=>String(x.id)!==d.dataset.del));cab();toast('Запись отменена')}});
+
+function route(){
+  const r=location.hash.replace('#/','')||'home',id=['home','booking','cabinet'].includes(r)?r:'home';
+  $$('.pg').forEach(p=>p.classList.toggle('on',p.id===id));
+  $$('nav a[data-r]').forEach(a=>a.classList.toggle('on',a.dataset.r===id));
+  if(id==='home'){sweep();$$('#bars i').forEach(i=>{i.style.width=0;setTimeout(()=>i.style.width=i.dataset.w+'%',80)})}
+  if(id==='booking'){prefill();$('#bf').hidden=false;$('#ok').hidden=true}
+  if(id==='cabinet')cab();
+  scrollTo(0,0);
+}
+addEventListener('hashchange',route);auth();route();
+</script>
+</body>
+</html>
