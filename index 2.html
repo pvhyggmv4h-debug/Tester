@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMW Workshop 161 — сервис BMW в Ростове-на-Дону</title>
+<style>
+:root{--bg:#10151c;--surface:#18212b;--line:#27323f;--text:#eef2f6;--muted:#9aa7b4;--blue:#53a8ff;--navy:#1c3f94;--red:#e0262d;--wa:#25d366}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--text);font:16px/1.6 "Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;padding-bottom:76px}
+a{color:inherit}
+.wrap{max-width:960px;margin:0 auto;padding:0 20px}
+.demo{background:var(--navy);font-size:13px;text-align:center;padding:6px 12px}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(16,21,28,.96);z-index:5}
+.top{display:flex;justify-content:space-between;align-items:center;padding-top:12px;padding-bottom:6px}
+.logo{font-weight:700;text-decoration:none}
+.tabs{display:flex;gap:22px;overflow-x:auto}
+.tabs a{text-decoration:none;color:var(--muted);padding:8px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;white-space:nowrap}
+.tabs a.on{color:var(--text);border-color:var(--blue)}
+.btn{position:relative;overflow:hidden;display:inline-block;padding:14px 22px;border-radius:6px;font:inherit;font-weight:600;text-decoration:none;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer;transition:transform .12s,background .2s}
+.btn:active{transform:scale(.96)}
+.btn.wa{background:var(--wa);color:#06220f;border-color:var(--wa)}
+.btn.mini{padding:8px 16px;font-size:14px}
+.btn.red{color:#ff8b8f}
+.btn:focus-visible,input:focus-visible,select:focus-visible,.svc>button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+.rip{position:absolute;width:40px;height:40px;margin:-20px;border-radius:50%;background:rgba(255,255,255,.4);transform:scale(0);animation:rip .6s ease-out forwards;pointer-events:none}
+@keyframes rip{to{transform:scale(7);opacity:0}}
+.page{display:none;padding:40px 0}
+.page.active{display:block;animation:in .45s ease both}
+@keyframes in{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.stripes{display:flex;height:6px;width:132px;margin-bottom:28px}
+.stripes i{flex:1;transform:scaleX(0);transform-origin:left;animation:grow .5s forwards}
+.stripes i:nth-child(1){background:var(--blue);animation-delay:.1s}.stripes i:nth-child(2){background:var(--navy);animation-delay:.3s}.stripes i:nth-child(3){background:var(--red);animation-delay:.5s}
+@keyframes grow{to{transform:none}}
+h1{font-size:clamp(32px,7vw,56px);line-height:1.1;font-weight:800;letter-spacing:-.02em;max-width:14em}
+h2{font-size:28px;margin-bottom:6px;letter-spacing:-.01em}
+h3{margin-bottom:8px}
+.lead{color:var(--muted);max-width:34em;margin:18px 0 26px;font-size:18px}
+.sub{color:var(--muted);margin-bottom:24px}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.stats{display:flex;gap:32px;flex-wrap:wrap;margin:36px 0 12px}
+.stats b{font-size:40px;line-height:1;display:block}
+.stats span{color:var(--muted);font-size:14px}
+.block{margin-top:48px;padding-top:36px;border-top:1px solid var(--line)}
+.cols{display:grid;gap:32px}
+@media(min-width:760px){.cols{grid-template-columns:1fr 1fr}}
+.bar div{display:flex;justify-content:space-between;font-size:15px;margin:12px 0 5px}
+.bar span{display:block;height:6px;background:var(--surface);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue);width:0;transition:width 1s ease .2s}
+blockquote{background:var(--surface);border-left:4px solid var(--navy);padding:20px;border-radius:0 8px 8px 0}
+blockquote cite{display:block;margin-top:10px;color:var(--muted);font-size:14px;font-style:normal}
+.svc{border-bottom:1px solid var(--line)}
+.svc:first-child{border-top:1px solid var(--line)}
+.svc>button{all:unset;box-sizing:border-box;width:100%;display:flex;align-items:center;gap:14px;padding:16px 0;cursor:pointer}
+.svc>button>span:first-child{flex:1}
+.svc small{display:block;color:var(--muted)}
+.pr{font-weight:700;color:var(--blue);white-space:nowrap}
+.pr.q{color:var(--muted);font-weight:400;font-size:14px}
+.chev{width:10px;height:10px;border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);transform:rotate(45deg);transition:transform .3s}
+.svc.open .chev{transform:rotate(225deg)}
+.more{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.svc.open .more{grid-template-rows:1fr}
+.more>div{overflow:hidden}
+.more p{color:var(--muted);margin-bottom:14px}
+.more .btn{margin-bottom:16px}
+label{display:block;margin-bottom:14px;color:var(--muted);font-size:14px}
+input,select{display:block;width:100%;margin-top:6px;padding:12px;border-radius:6px;border:1px solid var(--line);background:var(--bg);color:var(--text);font:inherit}
+form{max-width:440px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:20px;margin-bottom:16px}
+.row{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.row:last-child{border:0}
+.row small{color:var(--muted);display:block}
+.tl{list-style:none;padding:0;margin:8px 0 0}
+.tl li{position:relative;padding:0 0 18px 30px;color:var(--muted);opacity:0;animation:in .5s forwards}
+.tl li::before{content:"";position:absolute;left:0;top:5px;width:14px;height:14px;border-radius:50%;border:2px solid var(--line);background:var(--bg)}
+.tl li::after{content:"";position:absolute;left:6px;top:20px;bottom:-4px;width:2px;background:var(--line)}
+.tl li:last-child::after{display:none}
+.tl li.done{color:var(--text)}.tl li.done::before{background:var(--blue);border-color:var(--blue)}
+.tl li.now{color:var(--text);font-weight:600}.tl li.now::before{border-color:var(--blue);animation:pulse 1.5s infinite}
+@keyframes pulse{50%{box-shadow:0 0 0 7px rgba(83,168,255,.25)}}
+.ok{text-align:center;padding:24px 0}
+.ok svg{width:72px}
+.ok circle{stroke-dasharray:151;stroke-dashoffset:151;animation:dr .6s forwards}
+.ok path{stroke-dasharray:40;stroke-dashoffset:40;animation:dr .4s .5s forwards}
+@keyframes dr{to{stroke-dashoffset:0}}
+.saved{animation:flash .9s}
+@keyframes flash{30%{background:var(--wa);color:#06220f}}
+dialog{background:var(--surface);color:var(--text);border:1px solid var(--line);border-radius:10px;padding:24px;width:min(92vw,380px);margin:auto}
+dialog::backdrop{background:rgba(0,0,0,.65)}
+dialog[open]{animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:scale(.93)}}
+.note{color:var(--muted);font-size:13px;margin-bottom:14px}
+footer{padding:28px 0;color:var(--muted);font-size:13px;border-top:1px solid var(--line)}
+.bar-fixed{position:fixed;left:0;right:0;bottom:0;background:rgba(16,21,28,.96);border-top:1px solid var(--line);padding:10px 16px}
+.bar-fixed .btn{display:block;text-align:center;max-width:520px;margin:0 auto}
+@media(min-width:900px){.bar-fixed{display:none}body{padding-bottom:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+</style>
+</head>
+<body>
+<div class="demo">Демо-версия сайта, подготовленная для BMW Workshop 161</div>
+<header>
+  <div class="wrap top"><a class="logo" href="#/">BMW Workshop 161</a><button class="btn mini" id="authBtn">Войти</button></div>
+  <nav class="wrap tabs">
+    <a href="#/" data-r="home">Главная</a><a href="#/services" data-r="services">Услуги</a><a href="#/booking" data-r="booking">Запись</a><a href="#/cabinet" data-r="cabinet">Личный кабинет</a>
+  </nav>
+</header>
+
+<main class="wrap">
+  <section class="page" id="home">
+    <div class="stripes" aria-hidden="true"><i></i><i></i><i></i></div>
+    <h1>Сервис BMW, которому доверяют в Ростове</h1>
+    <p class="lead">Диагностика, обслуживание и ремонт вашей BMW. Объясняем, в чём проблема, и называем цену до начала работ.</p>
+    <div class="btns"><a class="btn wa" href="#/booking">Записаться онлайн</a><a class="btn" href="#/services">Услуги и цены</a></div>
+    <div class="stats"><div><b id="rate">5.0</b><span>рейтинг на Яндекс Картах</span></div><div><b>273</b><span>оценки</span></div><div><b>183</b><span>отзыва</span></div></div>
+    <div class="block cols">
+      <div><h2>Что говорят клиенты</h2><p class="sub">Доля положительных оценок в отзывах:</p><div class="bar" id="bars"></div></div>
+      <blockquote>Ехали проездом, на X5 сломался вентилятор и повредил радиатор. Машину приняли перед закрытием, причину нашли за 10 минут и сделали ремонт за обещанные три дня.<cite>Из отзыва на Яндекс Картах, сентябрь 2025</cite></blockquote>
+    </div>
+    <div class="block">
+      <h2>Как нас найти</h2><p class="sub">Открыто с 9:00. Парковка, комната ожидания, Wi-Fi.</p>
+      <div class="row"><span>Адрес</span><a href="https://yandex.ru/maps/org/bmv_vorkshop_161/4807083279/">Набережная улица, 217, 1 этаж</a></div>
+      <div class="row"><span>Телефон</span><a href="tel:+79525879999">+7 (952) 587-99-99</a></div>
+      <div class="row"><span>Мессенджеры</span><span><a href="https://wa.me/79526022666">WhatsApp</a> · <a href="https://t.me/+79526022666">Telegram</a></span></div>
+    </div>
+  </section>
+
+  <section class="page" id="services">
+    <h2>Услуги</h2><p class="sub">Нажмите на услугу, чтобы узнать подробности. Точную стоимость назовём после осмотра.</p>
+    <div id="svcList"></div>
+  </section>
+
+  <section class="page" id="booking">
+    <h2>Онлайн-запись</h2><p class="sub">Заполните форму, и мы свяжемся с вами для подтверждения времени.</p>
+    <form id="bookForm">
+      <label>Услуга<select id="bSvc" required></select></label>
+      <label>Автомобиль<input id="bCar" placeholder="Например, BMW 530d G30" required></label>
+      <label>Желаемая дата<input id="bDate" type="date" required></label>
+      <label>Имя<input id="bName" required autocomplete="name"></label>
+      <label>Телефон<input id="bPhone" type="tel" required autocomplete="tel" placeholder="+7"></label>
+      <button class="btn wa" type="submit">Отправить заявку</button>
+    </form>
+    <div id="ok" class="ok" hidden>
+      <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24" fill="none" stroke="#25d366" stroke-width="3"/><path d="M14 27l8 8 16-17" fill="none" stroke="#25d366" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <h2 style="margin-top:12px">Заявка отправлена</h2>
+      <p class="sub">Она сохранена в вашем кабинете. Чтобы ответили быстрее, продублируйте её в WhatsApp.</p>
+      <div class="btns" style="justify-content:center"><a class="btn wa" id="waLink" href="#">Написать в WhatsApp</a><a class="btn" href="#/cabinet">Открыть кабинет</a></div>
+    </div>
+  </section>
+
+  <section class="page" id="cabinet"><div id="cabBody"></div></section>
+</main>
+
+<footer><div class="wrap">BMW Workshop 161, Ростов-на-Дону. Независимый сервис, не является официальным дилером BMW. BMW — товарный знак BMW AG.</div></footer>
+<div class="bar-fixed"><a class="btn wa" href="https://wa.me/79526022666">Записаться в WhatsApp</a></div>
+
+<dialog id="dlg">
+  <h3>Вход в личный кабинет</h3>
+  <p class="note">Демо: введите любое имя и номер. Данные хранятся только в вашем браузере.</p>
+  <form id="loginForm">
+    <label>Имя<input id="lName" required autocomplete="name"></label>
+    <label>Телефон<input id="lPhone" type="tel" required autocomplete="tel" placeholder="+7"></label>
+    <div class="btns"><button class="btn wa" type="submit">Войти</button><button class="btn" type="button" id="dlgClose">Отмена</button></div>
+  </form>
+</dialog>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+const store={get(k,d){try{const v=JSON.parse(localStorage.getItem(k));return v==null?d:v}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}};
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const S=[
+{n:'Диагностика BMW',d:'Определяем причину неисправности и называем стоимость ремонта до начала работ.',p:'1 000 ₽'},
+{n:'Техническое обслуживание',d:'Масло, фильтры, свечи, тормозные колодки и жидкости по регламенту вашей модели.'},
+{n:'Ремонт',d:'Двигатель, ходовая, электрика, система охлаждения.'},
+{n:'Кузовной ремонт',d:'Восстановление после ДТП и мелких повреждений.'},
+{n:'Сход-развал',d:'Регулировка углов установки колёс.'},
+{n:'Дооснащение',d:'Дополнительное оборудование для вашей BMW.'},
+{n:'Запчасти под заказ',d:'Подберём и закажем детали на ваш автомобиль.'}];
+$('#svcList').innerHTML=S.map((s,i)=>`<div class="svc"><button aria-expanded="false"><span><b>${s.n}</b></span><span class="pr${s.p?'':' q'}">${s.p||'по запросу'}</span><i class="chev"></i></button><div class="more"><div><p>${s.d}</p><a class="btn mini wa" href="#/booking" data-svc="${i}">Записаться</a></div></div></div>`).join('');
+$('#bSvc').innerHTML=S.map((s,i)=>`<option value="${i}">${s.n}</option>`).join('');
+$('#bars').innerHTML=[['Персонал',97],['Ремонт',95],['Сроки',94],['Диагностика',97],['Обслуживание',100]].map(a=>`<div><div><span>${a[0]}</span><b>${a[1]}%</b></div><span><i data-w="${a[1]}"></i></span></div>`).join('');
+
+$('#svcList').addEventListener('click',e=>{
+  const b=e.target.closest('.svc>button');if(b){const s=b.parentElement;const o=s.classList.toggle('open');b.setAttribute('aria-expanded',o)}
+  const a=e.target.closest('[data-svc]');if(a)$('#bSvc').value=a.dataset.svc;
+});
+document.addEventListener('click',e=>{
+  const b=e.target.closest('.btn');if(!b)return;
+  const r=b.getBoundingClientRect(),s=document.createElement('span');s.className='rip';s.style.left=(e.clientX-r.left)+'px';s.style.top=(e.clientY-r.top)+'px';b.appendChild(s);setTimeout(()=>s.remove(),650);
+});
+
+const dlg=$('#dlg');
+const user=()=>store.get('bw_user',null);
+function auth(){const u=user();$('#authBtn').textContent=u?u.name.split(' ')[0]:'Войти'}
+$('#authBtn').onclick=()=>user()?(location.hash='#/cabinet'):dlg.showModal();
+$('#dlgClose').onclick=()=>dlg.close();
+dlg.addEventListener('click',e=>{if(e.target===dlg)dlg.close()});
+$('#loginForm').onsubmit=e=>{e.preventDefault();store.set('bw_user',{name:$('#lName').value.trim(),phone:$('#lPhone').value.trim()});dlg.close();auth();if(location.hash==='#/cabinet')route();else location.hash='#/cabinet'};
+
+$('#bDate').min=new Date().toISOString().slice(0,10);
+$('#bookForm').onsubmit=e=>{
+  e.preventDefault();
+  const o={id:Date.now(),svc:S[$('#bSvc').value].n,car:$('#bCar').value.trim(),date:$('#bDate').value,name:$('#bName').value.trim(),phone:$('#bPhone').value.trim()};
+  store.set('bw_book',[o,...store.get('bw_book',[])]);
+  const t=`Здравствуйте! Хочу записаться: ${o.svc}. Авто: ${o.car}. Дата: ${o.date}. Меня зовут ${o.name}, телефон ${o.phone}.`;
+  $('#waLink').href='https://wa.me/79526022666?text='+encodeURIComponent(t);
+  e.target.hidden=true;const ok=$('#ok');ok.hidden=false;ok.replaceWith(ok.cloneNode(true));
+  e.target.reset();
+};
+function prefill(){const u=user();if(u){$('#bName').value=u.name;$('#bPhone').value=u.phone}const c=store.get('bw_car','');if(c)$('#bCar').value=c}
+
+function cab(){
+  const el=$('#cabBody'),u=user();
+  if(!u){el.innerHTML='<h2>Личный кабинет</h2><p class="sub">Здесь будут ваши записи, автомобиль и статус ремонта.</p><button class="btn wa" id="cta">Войти</button>';$('#cta').onclick=()=>dlg.showModal();return}
+  const b=store.get('bw_book',[]),car=store.get('bw_car','');
+  const st=['Заявка принята','Автомобиль на диагностике','Согласование работ','Ремонт','Готово к выдаче'];
+  el.innerHTML=`<h2>Здравствуйте, ${esc(u.name)}</h2><p class="sub">${esc(u.phone)}</p>
+  <div class="card"><h3>Мой автомобиль</h3><label>Модель и год<input id="carIn" value="${esc(car)}" placeholder="BMW 530d G30, 2019"></label><button class="btn wa mini" id="carSave">Сохранить</button></div>
+  <div class="card"><h3>Мои записи</h3>${b.length?b.map(x=>`<div class="row"><span>${esc(x.svc)}<small>${esc(x.date)} · ${esc(x.car)}</small></span><button class="btn mini red" data-del="${x.id}">Отменить</button></div>`).join(''):'<p class="note">Записей пока нет.</p><a class="btn mini" href="#/booking">Записаться</a>'}</div>
+  <div class="card"><h3>Статус ремонта</h3><p class="note">Пример: так клиент увидит ход работ по своему автомобилю.</p><ol class="tl">${st.map((s,i)=>`<li class="${i<3?'done':i==3?'now':''}" style="animation-delay:${i*.2}s">${s}</li>`).join('')}</ol></div>
+  <div class="card"><h3>История обслуживания</h3><p class="note">Пример оформления. Реальные записи появятся после первого визита.</p><div class="row"><span>Замена масла и фильтров<small>12.03.2026</small></span></div><div class="row"><span>Диагностика подвески<small>05.09.2026</small></span></div></div>
+  <button class="btn" id="out">Выйти</button>`;
+  $('#carSave').onclick=e=>{store.set('bw_car',$('#carIn').value.trim());e.currentTarget.classList.remove('saved');void e.currentTarget.offsetWidth;e.currentTarget.classList.add('saved');e.currentTarget.textContent='Сохранено'};
+  $('#out').onclick=()=>{try{localStorage.removeItem('bw_user')}catch(e){}auth();cab()};
+}
+$('#cabBody').addEventListener('click',e=>{const d=e.target.closest('[data-del]');if(d){store.set('bw_book',store.get('bw_book',[]).filter(x=>String(x.id)!==d.dataset.del));cab()}});
+
+function count(){
+  const el=$('#rate'),t0=performance.now();
+  if(matchMedia('(prefers-reduced-motion:reduce)').matches){el.textContent='5.0';return}
+  (function f(t){const k=Math.min((t-t0)/900,1);el.textContent=(5*k).toFixed(1);if(k<1)requestAnimationFrame(f)})(t0);
+  $$('#bars i').forEach(i=>{i.style.width='0';setTimeout(()=>i.style.width=i.dataset.w+'%',60)});
+}
+function route(){
+  const r=location.hash.replace('#/','').split('?')[0]||'home';
+  const id=['home','services','booking','cabinet'].includes(r)?r:'home';
+  $$('.page').forEach(p=>p.classList.toggle('active',p.id===id));
+  $$('.tabs a').forEach(a=>a.classList.toggle('on',a.dataset.r===id));
+  if(id==='cabinet')cab();if(id==='home')count();if(id==='booking'){prefill();const f=$('#bookForm');f.hidden=false;$('#ok').hidden=true}
+  scrollTo(0,0);
+}
+addEventListener('hashchange',route);auth();route();
+</script>
+</body>
+</html>
